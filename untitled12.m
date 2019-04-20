@@ -1,12 +1,12 @@
 
 %%
 clc,clear
-name  = '/Users/liuhaoran/Documents/MATLAB/¿ªÌâ±¨¸æ/Æ½É¨¶¯¾²ÂöÆÚÊµÑéÊı¾İ/RawFiles-49/22776364/'
+name  = '/Users/liuhaoran/Documents/MATLAB/å¼€é¢˜æŠ¥å‘Š/å¹³æ‰«åŠ¨é™è„‰æœŸå®éªŒæ•°æ®/RawFiles-49/22776364/'
 d = dir(name);
-% d = dir('/Users/liuhaoran/Documents/Nodules-LIDC/¶ñĞÔ');
-% d = dir('/Users/liuhaoran/Documents/Nodules-LIDC/Á¼ĞÔ');
+% d = dir('/Users/liuhaoran/Documents/Nodules-LIDC/æ¶æ€§');
+% d = dir('/Users/liuhaoran/Documents/Nodules-LIDC/è‰¯æ€§');
 % d = dir('/Users/liuhaoran/Documents/WL3/D25');
-% d = dir('/Users/liuhaoran/Documents/WL3/D25ÖĞ¶à¸ö·Î½á½ÚÉ¸Ñ¡');
+% d = dir('/Users/liuhaoran/Documents/WL3/D25ä¸­å¤šä¸ªè‚ºç»“èŠ‚ç­›é€‰');
 isub = [d(:).isdir]; 
 nameFolds = {d(isub).name}';
 nd = length(nameFolds);
@@ -18,7 +18,7 @@ cont = 1;
     files = dir([subfoldername,'/*.raw']);
 
 %     
-    %¶ÁÈ¡coordÊı¾İºÍnewÊı¾İ
+    %è¯»å–coordæ•°æ®å’Œnewæ•°æ®
     if(strfind(files(1).name,'Coord'))
         fidraw_Coord = fopen(strcat(subfoldername, '/', files(1).name));
     else
@@ -53,7 +53,7 @@ cont = 1;
     
 
     raw_con = 1;
-    %ThreeDImages_New ¹éÒ»»¯£»·Î½á½ÚroiÇøÓòÌáÈ¡
+    %ThreeDImages_New å½’ä¸€åŒ–ï¼›è‚ºç»“èŠ‚roiåŒºåŸŸæå–
 %     for k=1:nxyzraw_New(3)
         k = 2
         for j=1:nxyzraw_New(2)
@@ -62,7 +62,7 @@ cont = 1;
 %                 if(ThreeDImages_New(i,j,k) < 0)
 %                     ThreeDImages_New(i,j,k) = 0;
 %                 end
-%                 ThreeDImages_New(i,j,k) = uint8((ThreeDImages_New(i,j,k)/raw_max) * 255);%Ñ¹Ëõ»Ò¶ÈµÈ¼¶µ½256¼¶
+%                 ThreeDImages_New(i,j,k) = uint8((ThreeDImages_New(i,j,k)/raw_max) * 255);%å‹ç¼©ç°åº¦ç­‰çº§åˆ°256çº§
                 if logical(ThreeDImages_Coord(i,j,k))==1
                     ThreeDImages_ROI(i,j)=ThreeDImages_New(i,j,k);
                     number(raw_con) = ThreeDImages_New(i,j,k);
@@ -75,5 +75,4 @@ cont = 1;
     num_max = max(number)
     num_min = min(number)
     num_doubel = (number - num_min)/(num_max-num_min)
-   
    imhist(num_doubel)
