@@ -1,9 +1,9 @@
-%%%ÅúÁ¿²é¿´lidcÊı¾İ¼¯
+%%%æ‰¹é‡æŸ¥çœ‹lidcæ•°æ®é›†
 clc;clear;
 % namespace = '/Users/liuhaoran/Documents/lidc1';
 namespace = '/Users/liuhaoran/Documents/MATLAB/enhanceCT/dongmaizengqiang/1';
 % namespace = '/Users/liuhaoran/Documents/WL3/D25';
-% namespace = '/Users/liuhaoran/Documents/WL3/D25ÖĞ¶à¸ö·Î½á½ÚÉ¸Ñ¡';
+% namespace = '/Users/liuhaoran/Documents/WL3/D25ä¸­å¤šä¸ªè‚ºç»“èŠ‚ç­›é€‰';
 d = dir(namespace);
 
 isub = [d(:).isdir]; 
@@ -28,7 +28,7 @@ for nfile = 4:nd
 %         fidraw_New = fopen(strcat(subfoldername, '/', files(1).name));
 %     end
 %     
-    %¶ÁÈ¡coordÊı¾İºÍnewÊı¾İ
+    %è¯»å–coordæ•°æ®å’Œnewæ•°æ®
     if(strfind(files(1).name,'Coord'))
         fidraw_Coord = fopen(strcat(subfoldername, '/', files(1).name));
     else
@@ -60,7 +60,7 @@ for nfile = 4:nd
     raw_max = max(rawdata_New);
     firstpoint = rawdata_New(1);
     name = strcat(subfoldername, '*');
-    %ThreeDImages_New ¹éÒ»»¯£»·Î½á½ÚroiÇøÓòÌáÈ¡
+    %ThreeDImages_New å½’ä¸€åŒ–ï¼›è‚ºç»“èŠ‚roiåŒºåŸŸæå–
     for k=1:nxyzraw_New(3)
         for j=1:nxyzraw_New(2)
             for i=1:nxyzraw_New(1)
@@ -68,8 +68,8 @@ for nfile = 4:nd
                 if(ThreeDImages_New(i,j,k) < 0)
                     ThreeDImages_New(i,j,k) = 0;
                 end
-%                 ThreeDImages_New(i,j,k) = uint8((ThreeDImages_New(i,j,k)/raw_max) * 255);%Ñ¹Ëõ»Ò¶ÈµÈ¼¶µ½256¼¶
-                ThreeDImages_New(i,j,k) = (ThreeDImages_New(i,j,k)/raw_max);%Ñ¹Ëõ»Ò¶ÈµÈ¼¶µ½256¼¶
+%                 ThreeDImages_New(i,j,k) = uint8((ThreeDImages_New(i,j,k)/raw_max) * 255);%å‹ç¼©ç°åº¦ç­‰çº§åˆ°256çº§
+                ThreeDImages_New(i,j,k) = (ThreeDImages_New(i,j,k)/raw_max);%å‹ç¼©ç°åº¦ç­‰çº§åˆ°256çº§
                 f(i,j,:,k)=ThreeDImages_New(i,j,k);
                 if logical(ThreeDImages_Coord(i,j,k))==1
 %                     ThreeDImages_ROI(i,j,k)=ThreeDImages_New(i,j,k);
@@ -87,20 +87,20 @@ for nfile = 4:nd
     for k = 1:nxyzraw_New(3)
 
        
-        % figure ´°¿Ú×î´ó»¯£¬×ø±êÖáÒ²Ëæ×Å´°¿Ú±ä´ó¶øÏàÓ¦±ä´ó
-        scrsz = get(0,'ScreenSize');  % ÊÇÎªÁË»ñµÃÆÁÄ»´óĞ¡£¬ScreensizeÊÇÒ»¸ö4ÔªËØÏòÁ¿[left,bottom, width, height]
-        set(gcf,'Position',scrsz);    % ÓÃ»ñµÃµÄscreensizeÏòÁ¿ÉèÖÃfigureµÄpositionÊôĞÔ£¬ÊµÏÖ×î´ó»¯µÄÄ¿µÄ
+        % figure çª—å£æœ€å¤§åŒ–ï¼Œåæ ‡è½´ä¹Ÿéšç€çª—å£å˜å¤§è€Œç›¸åº”å˜å¤§
+        scrsz = get(0,'ScreenSize');  % æ˜¯ä¸ºäº†è·å¾—å±å¹•å¤§å°ï¼ŒScreensizeæ˜¯ä¸€ä¸ª4å…ƒç´ å‘é‡[left,bottom, width, height]
+        set(gcf,'Position',scrsz);    % ç”¨è·å¾—çš„screensizeå‘é‡è®¾ç½®figureçš„positionå±æ€§ï¼Œå®ç°æœ€å¤§åŒ–çš„ç›®çš„
         subplot(num1+1,num1+1,k)
         imshow(f(:,:,:,k))
 %         imshow(ThreeDImages_New(:,:,k))
     end
 % %     nfile = 5;
     a=input('enter a numeber:');
-     %% ¿½±´ÎÄ¼ş´úÂë
+     %% æ‹·è´æ–‡ä»¶ä»£ç 
 %     if a == 1
-%         copyfile( name ,'/Users/liuhaoran/Documents/·Î½á½Ú·ÖÀà/D25¿É·Ö')
+%         copyfile( name ,'/Users/liuhaoran/Documents/è‚ºç»“èŠ‚åˆ†ç±»/D25å¯åˆ†')
 %     else
-%         copyfile( name ,'/Users/liuhaoran/Documents/·Î½á½Ú·ÖÀà/D25²»¿É·Ö')
+%         copyfile( name ,'/Users/liuhaoran/Documents/è‚ºç»“èŠ‚åˆ†ç±»/D25ä¸å¯åˆ†')
 %     end
     %% 
     close all     
